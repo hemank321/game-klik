@@ -1,33 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Game Klik</title>
-  <style>
-    body {
-      font-family: Arial;
-      text-align: center;
-      margin-top: 50px;
+<script>
+  let skor = 0;
+  let waktu = 10;
+  let mulai = false;
+  let timer = null;
+
+  function klik() {
+    if (!mulai) {
+      mulai = true;
+      timer = setInterval(hitungWaktu, 1000);
     }
-    button {
-      font-size: 20px;
-      padding: 15px 30px;
+    skor++;
+    document.getElementById("skor").innerText = skor;
+  }
+
+  function hitungWaktu() {
+    waktu--;
+    document.getElementById("waktu").innerText = waktu;
+
+    if (waktu <= 0) {
+      clearInterval(timer);
+      document.getElementById("btn").disabled = true;
+      document.getElementById("waktu").innerText = 0;
+      alert("Waktu habis! Skor kamu: " + skor);
     }
-  </style>
-</head>
-<body>
-
-  <h1>🎮 GAME KLIK</h1>
-  <p>Skor: <span id="skor">0</span></p>
-
-  <button onclick="klik()">KLIK SAYA</button>
-
-  <script>
-    let skor = 0;
-    function klik() {
-      skor++;
-      document.getElementById("skor").innerText = skor;
-    }
-  </script>
-
-</body>
-</html>
+  }
+</script>
