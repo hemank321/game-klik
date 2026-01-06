@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Game Klik Pertama</title>
+  <title>Game Klik</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 50px;
+    }
+    button {
+      font-size: 20px;
+      padding: 15px 30px;
+    }
+  </style>
 </head>
 <body>
-  <h1>GAME KLIK SAYA</h1>
-  <button onclick="alert('Berhasil!')">KLIK AKU</button>
+
+  <h1>🎮 GAME KLIK</h1>
+  <p>Skor: <span id="skor">0</span></p>
+
+  <button onclick="klik()">KLIK SAYA</button>
+
+  <script>
+    let skor = 0;
+    function klik() {
+      skor++;
+      document.getElementById("skor").innerText = skor;
+    }
+  </script>
+
 </body>
 </html>
