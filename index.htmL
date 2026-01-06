@@ -20,33 +20,43 @@
   <p>Waktu: <span id="waktu">10</span> detik</p>
   <p>Skor: <span id="skor">0</span></p>
 
-  <button id="btn" onclick="klik()">KLIK SAYA</button>
+  <button id="btn">KLIK SAYA</button>
 
   <script>
     let skor = 0;
     let waktu = 10;
-    let mulai = false;
     let timer = null;
+    let gameSelesai = false;
 
-    function klik() {
-      if (!mulai) {
-        mulai = true;
-        timer = setInterval(hitungWaktu, 1000);
-      }
+    const btn = document.getElementById("btn");
+
+    btn.onclick = function () {
+      if (gameSelesai) return;        // ⛔ pengaman 1
+      if (timer === null) mulaiGame();
+
       skor++;
       document.getElementById("skor").innerText = skor;
+    };
+
+    function mulaiGame() {
+      timer = setInterval(() => {
+        if (waktu <= 0) {
+          selesaiGame();
+          return;                     // ⛔ pengaman 2
+        }
+
+        waktu--;
+        document.getElementById("waktu").innerText = waktu;
+      }, 1000);
     }
 
-    function hitungWaktu() {
-      waktu--;
-      document.getElementById("waktu").innerText = waktu;
-
-      if (waktu <= 0) {
-        clearInterval(timer);
-        document.getElementById("btn").disabled = true;
-        document.getElementById("waktu").innerText = 0;
-        alert("Waktu habis! Skor kamu: " + skor);
-      }
+    function selesaiGame() {
+      gameSelesai = true;
+      clearInterval(timer);
+      timer = null;
+      document.getElementById("waktu").innerText = 0;
+      btn.disabled = true;
+      alert("Waktu habis! Skor kamu: " + skor);
     }
   </script>
 
