@@ -5,6 +5,117 @@
 </head>
 <body style="text-align:center;margin-top:50px">
 
+<h1>GAME KLIK</h1>
+<p>Waktu: <span id="waktu">10</span></p>
+<p>Skor: <span id="skor">0</span></p>
+
+<button id="btn">KLIK</button>
+
+<script>
+let skor = 0;
+let waktu = 10;
+let jalan = false;
+let interval;
+
+const btn = document.getElementById("btn");
+
+btn.addEventListener("click", () => {
+  if (waktu <= 0) return;
+
+  if (!jalan) {
+    jalan = true;
+    interval = setInterval(() => {
+      waktu--;
+      document.getElementById("waktu").innerText = waktu;
+
+      if (waktu === 0) {
+        clearInterval(interval);
+        btn.disabled = true;
+        alert("Selesai! Skor: " + skor);
+      }
+    }, 1000);
+  }
+
+  skor++;
+  document.getElementById("skor").innerText = skor;
+});
+</script>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Game Klik</title>
+</head>
+<body style="text-align:center;margin-top:50px">
+
+<h1>🎮 GAME KLIK</h1>
+
+<p>Waktu: <span id="waktu">10</span> detik</p>
+<p>Skor: <span id="skor">0</span></p>
+
+<button id="btn">KLIK</button>
+<br><br>
+<button id="ulang" style="display:none;">MAIN LAGI</button>
+
+<script>
+let skor = 0;
+let waktu = 10;
+let jalan = false;
+let interval;
+
+const btn = document.getElementById("btn");
+const ulang = document.getElementById("ulang");
+
+btn.addEventListener("click", () => {
+  if (waktu <= 0) return;
+
+  if (!jalan) {
+    jalan = true;
+    interval = setInterval(() => {
+      waktu--;
+      document.getElementById("waktu").innerText = waktu;
+
+      if (waktu === 0) {
+        clearInterval(interval);
+        btn.disabled = true;
+        ulang.style.display = "inline";
+        alert("Selesai! Skor: " + skor);
+      }
+    }, 1000);
+  }
+
+  skor++;
+  document.getElementById("skor").innerText = skor;
+});
+
+ulang.addEventListener("click", () => {
+  skor = 0;
+  waktu = 10;
+  jalan = false;
+
+  document.getElementById("skor").innerText = skor;
+  document.getElementById("waktu").innerText = waktu;
+
+  btn.disabled = false;
+  ulang.style.display = "none";
+});
+</script>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Game Klik</title>
+</head>
+<body style="text-align:center;margin-top:50px">
+
 <h1>🎮 GAME KLIK</h1>
 
 <p>Waktu: <span id="waktu">10</span> detik</p>
@@ -79,3 +190,34 @@ ulang.addEventListener("click", () => {
 
 </body>
 </html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Klik</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    button {
+      width: 100%;
+      max-width: 300px;
+      font-size: 22px;
+      padding: 15px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
