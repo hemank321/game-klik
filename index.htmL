@@ -2,63 +2,44 @@
 <html>
 <head>
   <title>Game Klik</title>
-  <style>
-    body {
-      font-family: Arial;
-      text-align: center;
-      margin-top: 50px;
-    }
-    button {
-      font-size: 20px;
-      padding: 15px 30px;
-    }
-  </style>
 </head>
-<body>
+<body style="text-align:center;margin-top:50px">
 
-  <h1>🎮 GAME KLIK</h1>
-  <p>Waktu: <span id="waktu">10</span> detik</p>
-  <p>Skor: <span id="skor">0</span></p>
+<h1>GAME KLIK</h1>
+<p>Waktu: <span id="waktu">10</span></p>
+<p>Skor: <span id="skor">0</span></p>
 
-  <button id="btn">KLIK SAYA</button>
+<button id="btn">KLIK</button>
 
-  <script>
-    let skor = 0;
-    let waktu = 10;
-    let timer = null;
-    let gameSelesai = false;
+<script>
+let skor = 0;
+let waktu = 10;
+let jalan = false;
+let interval;
 
-    const btn = document.getElementById("btn");
+const btn = document.getElementById("btn");
 
-    btn.onclick = function () {
-      if (gameSelesai) return;        // ⛔ pengaman 1
-      if (timer === null) mulaiGame();
+btn.addEventListener("click", () => {
+  if (waktu <= 0) return;
 
-      skor++;
-      document.getElementById("skor").innerText = skor;
-    };
+  if (!jalan) {
+    jalan = true;
+    interval = setInterval(() => {
+      waktu--;
+      document.getElementById("waktu").innerText = waktu;
 
-    function mulaiGame() {
-      timer = setInterval(() => {
-        if (waktu <= 0) {
-          selesaiGame();
-          return;                     // ⛔ pengaman 2
-        }
+      if (waktu === 0) {
+        clearInterval(interval);
+        btn.disabled = true;
+        alert("Selesai! Skor: " + skor);
+      }
+    }, 1000);
+  }
 
-        waktu--;
-        document.getElementById("waktu").innerText = waktu;
-      }, 1000);
-    }
-
-    function selesaiGame() {
-      gameSelesai = true;
-      clearInterval(timer);
-      timer = null;
-      document.getElementById("waktu").innerText = 0;
-      btn.disabled = true;
-      alert("Waktu habis! Skor kamu: " + skor);
-    }
-  </script>
+  skor++;
+  document.getElementById("skor").innerText = skor;
+});
+</script>
 
 </body>
 </html>
