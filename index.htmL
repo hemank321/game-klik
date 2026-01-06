@@ -5,11 +5,14 @@
 </head>
 <body style="text-align:center;margin-top:50px">
 
-<h1>GAME KLIK</h1>
-<p>Waktu: <span id="waktu">10</span></p>
+<h1>🎮 GAME KLIK</h1>
+
+<p>Waktu: <span id="waktu">10</span> detik</p>
 <p>Skor: <span id="skor">0</span></p>
 
 <button id="btn">KLIK</button>
+<br><br>
+<button id="ulang" style="display:none;">MAIN LAGI</button>
 
 <script>
 let skor = 0;
@@ -18,6 +21,7 @@ let jalan = false;
 let interval;
 
 const btn = document.getElementById("btn");
+const ulang = document.getElementById("ulang");
 
 btn.addEventListener("click", () => {
   if (waktu <= 0) return;
@@ -31,6 +35,7 @@ btn.addEventListener("click", () => {
       if (waktu === 0) {
         clearInterval(interval);
         btn.disabled = true;
+        ulang.style.display = "inline";
         alert("Selesai! Skor: " + skor);
       }
     }, 1000);
@@ -38,6 +43,18 @@ btn.addEventListener("click", () => {
 
   skor++;
   document.getElementById("skor").innerText = skor;
+});
+
+ulang.addEventListener("click", () => {
+  skor = 0;
+  waktu = 10;
+  jalan = false;
+
+  document.getElementById("skor").innerText = skor;
+  document.getElementById("waktu").innerText = waktu;
+
+  btn.disabled = false;
+  ulang.style.display = "none";
 });
 </script>
 
