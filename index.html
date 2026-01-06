@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Game Klik</title>
+</head>
+<body style="text-align:center; font-family:Arial; margin-top:50px;">
+
+<h1>Game Klik</h1>
+<p>Skor: <span id="skor">0</span></p>
+<p>Waktu: <span id="waktu">10</span> detik</p>
+
+<button onclick="klik()">KLIK SAYA</button>
+
+<script>
+let skor = 0;
+let waktu = 10;
+
+function klik() {
+  skor++;
+  document.getElementById("skor").innerText = skor;
+}
+
+setInterval(() => {
+  waktu--;
+  document.getElementById("waktu").innerText = waktu;
+
+  if (waktu === 0) {
+    alert("Game Selesai! Skor kamu: " + skor);
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
