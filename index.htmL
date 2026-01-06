@@ -9,6 +9,7 @@
 
 <p>Waktu: <span id="waktu">10</span> detik</p>
 <p>Skor: <span id="skor">0</span></p>
+<p>🏆 High Score: <span id="high">0</span></p>
 
 <button id="btn">KLIK</button>
 <br><br>
@@ -19,6 +20,15 @@ let skor = 0;
 let waktu = 10;
 let jalan = false;
 let interval;
+
+// ambil high score dari localStorage
+let highScore = localStorage.getItem("highScore");
+if (highScore === null) {
+  highScore = 0;
+  localStorage.setItem("highScore", 0);
+}
+
+document.getElementById("high").innerText = highScore;
 
 const btn = document.getElementById("btn");
 const ulang = document.getElementById("ulang");
@@ -36,7 +46,16 @@ btn.addEventListener("click", () => {
         clearInterval(interval);
         btn.disabled = true;
         ulang.style.display = "inline";
-        alert("Selesai! Skor: " + skor);
+
+        // cek high score
+        if (skor > highScore) {
+          highScore = skor;
+          localStorage.setItem("highScore", highScore);
+          document.getElementById("high").innerText = highScore;
+          alert("🎉 HIGH SCORE BARU: " + skor);
+        } else {
+          alert("Selesai! Skor: " + skor);
+        }
       }
     }, 1000);
   }
